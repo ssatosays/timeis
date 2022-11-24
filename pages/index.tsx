@@ -26,29 +26,41 @@ export default function Home() {
 
   return (
     <div>
-      <div>
-        <h3 className={styles.city}>Asia/Tokyo</h3>
-        <h2 className={styles.time} suppressHydrationWarning>
+      <div className={styles.card}>
+        <h4 className={styles.city}>Asia/Tokyo</h4>
+        <h4 className={styles.date} suppressHydrationWarning>
+          {jst.getMonth().toString().padStart(2, '0')}/
+          {jst.getDate().toString().padStart(2, '0')}
+        </h4>
+        <h3 className={styles.time} suppressHydrationWarning>
           {jst.getHours().toString().padStart(2, '0')}:
           {jst.getMinutes().toString().padStart(2, '0')}:
           {jst.getSeconds().toString().padStart(2, '0')}
-        </h2>
+        </h3>
       </div>
-      <div>
-        <h3 className={styles.city}>Europe/London</h3>
-        <h2 className={styles.time} suppressHydrationWarning>
+      <div className={styles.card}>
+        <h4 className={styles.city}>Europe/London</h4>
+        <h4 className={styles.date} suppressHydrationWarning>
+          {utc.getMonth().toString().padStart(2, '0')}/
+          {utc.getDate().toString().padStart(2, '0')}
+        </h4>
+        <h3 className={styles.time} suppressHydrationWarning>
           {utc.getHours().toString().padStart(2, '0')}:
           {utc.getMinutes().toString().padStart(2, '0')}:
           {utc.getSeconds().toString().padStart(2, '0')}
-        </h2>
+        </h3>
       </div>
-      <div>
-        <h3 className={styles.city}>Pacific/Honolulu</h3>
-        <h2 className={styles.time} suppressHydrationWarning>
+      <div className={styles.card}>
+        <h4 className={styles.city}>Pacific/Honolulu</h4>
+        <h4 className={styles.date} suppressHydrationWarning>
+          {hst.getMonth().toString().padStart(2, '0')}/
+          {hst.getDate().toString().padStart(2, '0')}
+        </h4>
+        <h3 className={styles.time} suppressHydrationWarning>
           {hst.getHours().toString().padStart(2, '0')}:
           {hst.getMinutes().toString().padStart(2, '0')}:
           {hst.getSeconds().toString().padStart(2, '0')}
-        </h2>
+        </h3>
       </div>
     </div>
   )
