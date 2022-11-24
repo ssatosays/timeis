@@ -1,24 +1,55 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
+import { utcToZonedTime } from 'date-fns-tz'
+import styles from '../styles/index.module.css'
 
 export default function Home() {
-  const [now, setDate] = useState(new Date())
+  const [jst, setJst] = useState(new Date())
+  const [utc, setUtc] = useState(new Date())
+  const [hst, setHst] = useState(new Date())
 
   useEffect(() => {
-    const curr = setInterval(() => {
-      setDate(new Date());
+    const jstSetInterval = setInterval(() => {
+      setJst(utcToZonedTime(new Date(), 'Asia/Tokyo'))
+    }, 1000)
+    const utcSetInterval = setInterval(() => {
+      setUtc(utcToZonedTime(new Date(), 'UTC'))
+    }, 1000)
+    const hstSetInterval = setInterval(() => {
+      setHst(utcToZonedTime(new Date(), 'Pacific/Honolulu'))
     }, 1000)
     return () => {
-      clearInterval(curr)
+      clearInterval(jstSetInterval)
+      clearInterval(utcSetInterval)
+      clearInterval(hstSetInterval)
     }
   }, [])
 
   return (
     <div>
-      <h1 suppressHydrationWarning>
-        {now.getHours().toString().padStart(2, '0')}:
-        {now.getMinutes().toString().padStart(2, '0')}:
-        {now.getSeconds().toString().padStart(2, '0')}
-      </h1>
+      <div>
+        <h3 className={styles.city}>Asia/Tokyo (+9)</h3>
+        <h2 className={styles.time} suppressHydrationWarning>
+          {jst.getHours().toString().padStart(2, '0')}:
+          {jst.getMinutes().toString().padStart(2, '0')}:
+          {jst.getSeconds().toString().padStart(2, '0')}
+        </h2>
+      </div>
+      <div>
+        <h3 className={styles.city}>Europe/London (0)</h3>
+        <h2 className={styles.time} suppressHydrationWarning>
+          {utc.getHours().toString().padStart(2, '0')}:
+          {utc.getMinutes().toString().padStart(2, '0')}:
+          {utc.getSeconds().toString().padStart(2, '0')}
+        </h2>
+      </div>
+      <div>
+        <h3 className={styles.city}>Pacific/Honolulu (-10)</h3>
+        <h2 className={styles.time} suppressHydrationWarning>
+          {hst.getHours().toString().padStart(2, '0')}:
+          {hst.getMinutes().toString().padStart(2, '0')}:
+          {hst.getSeconds().toString().padStart(2, '0')}
+        </h2>
+      </div>
     </div>
   )
 }
