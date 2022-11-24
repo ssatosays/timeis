@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <div>
       <div>
-        <h3 className={styles.city}>Asia/Tokyo (+9)</h3>
+        <h3 className={styles.city}>Asia/Tokyo</h3>
         <h2 className={styles.time} suppressHydrationWarning>
           {jst.getHours().toString().padStart(2, '0')}:
           {jst.getMinutes().toString().padStart(2, '0')}:
@@ -35,7 +35,7 @@ export default function Home() {
         </h2>
       </div>
       <div>
-        <h3 className={styles.city}>Europe/London (0)</h3>
+        <h3 className={styles.city}>Europe/London</h3>
         <h2 className={styles.time} suppressHydrationWarning>
           {utc.getHours().toString().padStart(2, '0')}:
           {utc.getMinutes().toString().padStart(2, '0')}:
@@ -43,7 +43,7 @@ export default function Home() {
         </h2>
       </div>
       <div>
-        <h3 className={styles.city}>Pacific/Honolulu (-10)</h3>
+        <h3 className={styles.city}>Pacific/Honolulu</h3>
         <h2 className={styles.time} suppressHydrationWarning>
           {hst.getHours().toString().padStart(2, '0')}:
           {hst.getMinutes().toString().padStart(2, '0')}:
